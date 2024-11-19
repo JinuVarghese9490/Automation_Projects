@@ -154,11 +154,9 @@ public class WebElementCommands extends Base
 	
 	public static void main(String[] args) 
 	{
-		//String inputValue="hello sir";
 		WebElementCommands webelementscommands=new WebElementCommands();
 		webelementscommands.initialiseBrowser();
 		webelementscommands.webElementCommands();
-		//webelementscommands.verifySingleInputField();
 		webelementscommands.driverQuit();
 
 		

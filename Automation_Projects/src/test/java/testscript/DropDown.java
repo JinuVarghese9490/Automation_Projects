@@ -49,18 +49,27 @@ public class DropDown extends Base
 				break;
 			}
 		}
+    }
+	
+	public void webDriverUniversityDropdown()
+	{
 		
-     }
-	
-	
+		driver.navigate().to("https://www.webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html");
+		WebElement language=driver.findElement(By.xpath("//select[@id='dropdowm-menu-1']"));
+		Select select=new Select(language);
+		select.selectByIndex(2);
+		select.selectByValue("sql");
+		select.selectByVisibleText("JAVA");
+		
+	}
 	
 	public static void main(String[] args) 
 	{
 		DropDown dropdown=new DropDown();
 	    dropdown.initialiseBrowser();
 		//dropdown.dropDownSample();
-		dropdown.seleniumDropDown();
-		
+		//dropdown.seleniumDropDown();
+		dropdown.webDriverUniversityDropdown();
 		dropdown.driverQuit();
 	
 		

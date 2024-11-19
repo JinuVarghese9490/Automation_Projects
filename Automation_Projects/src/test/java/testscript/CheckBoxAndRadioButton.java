@@ -46,13 +46,29 @@ public class CheckBoxAndRadioButton extends Base
 		showSelectedValue.click();
 	  }
 	
+	
+	
+	public void universityRadioButton()
+	{
+		driver.navigate().to("https://www.webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html");
+		WebElement radioButton=driver.findElement(By.xpath("//input[@value='green']"));
+		radioButton.click();
+		boolean green=radioButton.isSelected();
+		
+		
+		WebElement radioButtonOrange=driver.findElement(By.xpath("//input[@value='orange']"));
+		radioButtonOrange.click();
+		boolean orange=radioButtonOrange.isSelected();
+		
+	}
 
 	public static void main(String[] args) 
 	{
 		CheckBoxAndRadioButton checkboxradiobutton=new CheckBoxAndRadioButton();
 		checkboxradiobutton.initialiseBrowser();
-		checkboxradiobutton.checkBox();
-		checkboxradiobutton.radioButton();
+		//checkboxradiobutton.checkBox();
+		//checkboxradiobutton.radioButton();
+		checkboxradiobutton.universityRadioButton();
 		checkboxradiobutton.driverQuit();
 
 	}
