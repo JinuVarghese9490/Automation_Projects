@@ -4,13 +4,15 @@ import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
-public class Base 
+public class testNGBase 
 {
 
-
-    public WebDriver driver;
+	public WebDriver driver;
 	
+	@BeforeMethod
 	public void initialiseBrowser()
 	{
 		driver=new ChromeDriver();
@@ -19,20 +21,13 @@ public class Base
 		driver.manage().window().maximize();
 		
 	}
-
+@AfterMethod
 	public void driverQuit()
 	{
 		driver.quit();
 	}
 
 	
-	public static void main(String[] args) 
-	{
-		
-		Base base=new Base();
-		base.initialiseBrowser();
-		base.driverQuit();
-
-	}
-
+	
+	
 }

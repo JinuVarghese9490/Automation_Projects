@@ -1,7 +1,11 @@
 package testscript;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CheckBoxAndRadioButton extends Base
 {
@@ -13,6 +17,11 @@ public class CheckBoxAndRadioButton extends Base
 		checkBoxDemo.click();
 	   
 		WebElement clickOnThisCheckBox=driver.findElement(By.xpath("//input[@id='gridCheck']"));
+		
+		//implicit wait example 4
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(clickOnThisCheckBox));
+		
 		clickOnThisCheckBox.click();
 		boolean isCheckBoxSelected=	clickOnThisCheckBox.isSelected();
 		
@@ -30,6 +39,11 @@ public class CheckBoxAndRadioButton extends Base
 		
 		WebElement checkBoxFour=driver.findElement(By.xpath("//input[@id='check-box-four']"));
 		checkBoxFour.click();
+		
+		//implicit wait example 3
+		WebDriverWait wait1=new WebDriverWait(driver,Duration.ofSeconds(30));
+		wait1.until(ExpectedConditions.elementToBeSelected(checkBoxFour));
+		
 		boolean checkBoxFourSelected=checkBoxFour.isSelected();
 		
 	}
@@ -38,6 +52,8 @@ public class CheckBoxAndRadioButton extends Base
 	{
 		WebElement radioButtonsDemo=driver.findElement(By.linkText("Radio Buttons Demo"));
 		radioButtonsDemo.click();	
+		
+		
 		WebElement maleButton=driver.findElement(By.xpath("//input[@id='inlineRadio1']"));
 		maleButton.click();	
 		WebElement femaleButton=driver.findElement(By.xpath("//input[@id='inlineRadio2']"));
@@ -58,6 +74,11 @@ public class CheckBoxAndRadioButton extends Base
 		
 		WebElement radioButtonOrange=driver.findElement(By.xpath("//input[@value='orange']"));
 		radioButtonOrange.click();
+		
+		//implicit wait
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.elementToBeSelected(radioButtonOrange));
+		
 		boolean orange=radioButtonOrange.isSelected();
 		
 	}
@@ -66,9 +87,9 @@ public class CheckBoxAndRadioButton extends Base
 	{
 		CheckBoxAndRadioButton checkboxradiobutton=new CheckBoxAndRadioButton();
 		checkboxradiobutton.initialiseBrowser();
-		//checkboxradiobutton.checkBox();
+		checkboxradiobutton.checkBox();
 		//checkboxradiobutton.radioButton();
-		checkboxradiobutton.universityRadioButton();
+		//checkboxradiobutton.universityRadioButton();
 		checkboxradiobutton.driverQuit();
 
 	}

@@ -1,8 +1,16 @@
 package testscript;
 
+import java.time.Duration;
+import java.util.NoSuchElementException;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.devtools.v127.input.model.DragData;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WebElementCommands extends Base
 
@@ -126,16 +134,26 @@ public class WebElementCommands extends Base
 	{
 		
 	   WebElement singleInputTextField=driver.findElement(By.xpath("//input[@id='single-input-field']"));	
-	 
-	   
 	   singleInputTextField.sendKeys(inputValue);
-	   
 	   String actualData=singleInputTextField.getText();	
        
 	   WebElement showMessagebutton =driver.findElement(By.id("button-one"));
+	   
+	   //implicit wait example 1
+	   WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(30));
+	   wait.until(ExpectedConditions.elementToBeClickable(showMessagebutton));
+	   
 	   showMessagebutton.click();
+	   
+	   WebElement yourMessage=driver.findElement(By.xpath("//div[@id='message-one']"));
 		
-		WebElement yourMessage=driver.findElement(By.xpath("//div[@id='message-one']"));
+		//fluent wait
+		Wait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofSeconds(3))
+                .ignoring(NoSuchElementException.class);
+          fluentWait.until(ExpectedConditions.elementToBeClickable(showMessagebutton));
+		
 		
 		String yourText=yourMessage.getText();
 		String expectedData=yourText.substring(15, 19);
